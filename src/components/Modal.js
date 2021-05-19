@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { CalendarContext } from "../context/CalendarContext";
 
 export default function Modal() {
   const { isOpen, setIsOpen } = React.useContext(CalendarContext);
-  const [selected, setSelected] = React.useState();
-  const [createdEvent, setCreatedEvent] = React.useState({});
+  const [selected, setSelected] = React.useState("None");
+  const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
+  const [createdEvent, setCreatedEvent] = useState();
 
   const optionValues = {
-    None: { name: "None" },
+    None: { name: "None", fields: ["name"] },
     Holidays: { name: "Holidays", fields: ["Budget"] },
     Events: { name: "Events", fields: ["Where", "When"] },
     Other: { name: "Other", fields: ["Notes"] },
   };
 
-  console.log(Object.values(optionValues).map((obj) => obj.name));
+  function createEvent() {
+    const filtered = Object.keys(buildingEvent)
+      .filter(
+        (key) => key === "name" || optionValues[selected].fields.includes(key) //exclude field 'name' from filtering
+      )
+      .reduce((obj, key) => {
+        obj[key] = buildingEvent[key];
+        return obj;
+      }, {});
+
+    setCreatedEvent(filtered);
+  }
+
   const additionalFields = (selected) => {
     switch (selected) {
       case "None":
@@ -31,8 +44,8 @@ export default function Modal() {
                   name={field}
                   id={field}
                   onChange={(e) =>
-                    setCreatedEvent({
-                      ...createdEvent,
+                    setBuildingEvent({
+                      ...buildingEvent,
                       [field]: e.target.value,
                     })
                   }
@@ -54,8 +67,8 @@ export default function Modal() {
                   name={field}
                   id={field}
                   onChange={(e) =>
-                    setCreatedEvent({
-                      ...createdEvent,
+                    setBuildingEvent({
+                      ...buildingEvent,
                       [field]: e.target.value,
                     })
                   }
@@ -77,8 +90,8 @@ export default function Modal() {
                   name={field}
                   id={field}
                   onChange={(e) =>
-                    setCreatedEvent({
-                      ...createdEvent,
+                    setBuildingEvent({
+                      ...buildingEvent,
                       [field]: e.target.value,
                     })
                   }
@@ -101,7 +114,7 @@ export default function Modal() {
           type="text"
           name="what"
           onChange={(e) =>
-            setCreatedEvent({ ...createdEvent, name: e.target.value })
+            setBuildingEvent({ ...buildingEvent, name: e.target.value })
           }
         />
         <select
@@ -120,7 +133,7 @@ export default function Modal() {
         <button
           type="submit"
           onClick={() => {
-            console.log();
+            createEvent();
           }}
         >
           Create
