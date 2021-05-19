@@ -5,7 +5,6 @@ import Modal from "./Modal";
 import { CalendarContext } from "../context/CalendarContext";
 
 export default function CalendarComponent() {
-  function handleCalendarChange(newSelectedDate) {}
   const { isOpen, setIsOpen } = React.useContext(CalendarContext);
 
   const highlightedDates = [
