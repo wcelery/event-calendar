@@ -5,15 +5,15 @@ export default function Modal() {
   const { isOpen, setIsOpen } = React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState();
   const [createdEvent, setCreatedEvent] = React.useState({});
-  console.log(selected);
 
-  const optionValues = [
-    { name: "none" },
-    { name: "Holidays", fields: ["Budget"] },
-    { name: "Events", fields: ["Where", "When"] },
-    { name: "Other", fields: ["Notes"] },
-  ];
+  const optionValues = {
+    None: { name: "None" },
+    Holidays: { name: "Holidays", fields: ["Budget"] },
+    Events: { name: "Events", fields: ["Where", "When"] },
+    Other: { name: "Other", fields: ["Notes"] },
+  };
 
+  console.log(Object.values(optionValues).map((obj) => obj.name));
   const additionalFields = (selected) => {
     switch (selected) {
       case "None":
@@ -22,7 +22,7 @@ export default function Modal() {
       case "Holidays":
         return (
           <>
-            {optionValues[1].fields.map((field, idx) => (
+            {optionValues[selected].fields.map((field, idx) => (
               <>
                 <label htmlFor={field}>{field}</label>
                 <input
@@ -45,7 +45,7 @@ export default function Modal() {
       case "Events":
         return (
           <>
-            {optionValues[2].fields.map((field, idx) => (
+            {optionValues[selected].fields.map((field, idx) => (
               <>
                 <label htmlFor={field}>{field}</label>
                 <input
@@ -68,7 +68,7 @@ export default function Modal() {
       case "Other":
         return (
           <>
-            {optionValues[3].fields.map((field, idx) => (
+            {optionValues[selected].fields.map((field, idx) => (
               <>
                 <label htmlFor={field}>{field}</label>
                 <input
@@ -110,9 +110,9 @@ export default function Modal() {
             setSelected(e.target.value);
           }}
         >
-          {optionValues.map((option, idx) => (
-            <option key={idx} value={option.name}>
-              {option.name}
+          {Object.values(optionValues).map((obj, idx) => (
+            <option key={idx} value={obj.name}>
+              {obj.name}
             </option>
           ))}
         </select>
@@ -120,11 +120,7 @@ export default function Modal() {
         <button
           type="submit"
           onClick={() => {
-            let test = Object.keys(createdEvent);
-            console.log("selected", selected);
-            test.filter((key) => key !== selected);
-
-            console.log(test);
+            console.log();
           }}
         >
           Create
