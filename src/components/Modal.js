@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { CalendarContext } from "../context/CalendarContext";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Modal() {
   const { isOpen, setIsOpen } = React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState("None");
   const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
   const [createdEvent, setCreatedEvent] = useState();
+  const [event, setEvent] = useLocalStorage("event", {});
 
   const optionValues = {
     None: { name: "None", fields: ["name"] },
@@ -14,7 +16,7 @@ export default function Modal() {
     Other: { name: "Other", fields: ["Notes"] },
   };
 
-  function createEventObject() {
+  const createEventObject = () => {
     const filtered = Object.keys(buildingEvent)
       .filter(
         (key) => key === "name" || optionValues[selected].fields.includes(key) //exclude field 'name' from filtering
@@ -24,8 +26,13 @@ export default function Modal() {
         return obj;
       }, {});
 
-    setCreatedEvent(filtered);
-  }
+    setEvent(filtered);
+  };
+
+  const submitHandler = () => {
+    createEventObject();
+    console.log("created event", createdEvent);
+  };
 
   const additionalFields = (selected) => {
     switch (selected) {
@@ -133,7 +140,7 @@ export default function Modal() {
         <button
           type="submit"
           onClick={() => {
-            createEventObject();
+            submitHandler();
           }}
         >
           Create
