@@ -14,7 +14,7 @@ export default function Modal() {
     Other: { name: "Other", fields: ["Notes"] },
   };
 
-  function createEvent() {
+  function createEventObject() {
     const filtered = Object.keys(buildingEvent)
       .filter(
         (key) => key === "name" || optionValues[selected].fields.includes(key) //exclude field 'name' from filtering
@@ -133,7 +133,7 @@ export default function Modal() {
         <button
           type="submit"
           onClick={() => {
-            createEvent();
+            createEventObject();
           }}
         >
           Create
