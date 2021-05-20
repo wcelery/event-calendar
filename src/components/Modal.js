@@ -6,8 +6,7 @@ export default function Modal() {
   const { isOpen, setIsOpen, date } = React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState("None");
   const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
-  const [createdEvent, setCreatedEvent] = useState();
-  const [event, setEvent] = useLocalStorage("event", "dfg");
+  const [persistedEvent, setPersistedEvent] = useLocalStorage("events", []);
 
   const optionValues = {
     None: { name: "None", fields: ["name"] },
@@ -26,8 +25,17 @@ export default function Modal() {
         return obj;
       }, {});
 
-    setEvent({ event: filteredEvent, ...date });
-    console.log(event);
+    //TODO fukin copy this object
+    const listOfEvents = { events: { ...filteredEvent, ...date } };
+    if (persistedEvent.events.name === listOfEvents.events.name) {
+      setPersistedEvent(listOfEvents);
+    } else {
+      let cloned = { ...listOfEvents };
+      console.log(true);
+      setPersistedEvent(cloned);
+    }
+
+    console.log(persistedEvent);
   };
 
   const submitHandler = () => {
