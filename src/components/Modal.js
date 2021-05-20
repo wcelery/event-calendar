@@ -3,11 +3,11 @@ import { CalendarContext } from "../context/CalendarContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Modal() {
-  const { isOpen, setIsOpen } = React.useContext(CalendarContext);
+  const { isOpen, setIsOpen, date } = React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState("None");
   const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
   const [createdEvent, setCreatedEvent] = useState();
-  const [event, setEvent] = useLocalStorage("event", {});
+  const [event, setEvent] = useLocalStorage("event", "dfg");
 
   const optionValues = {
     None: { name: "None", fields: ["name"] },
@@ -17,7 +17,7 @@ export default function Modal() {
   };
 
   const createEventObject = () => {
-    const filtered = Object.keys(buildingEvent)
+    const filteredEvent = Object.keys(buildingEvent)
       .filter(
         (key) => key === "name" || optionValues[selected].fields.includes(key) //exclude field 'name' from filtering
       )
@@ -26,12 +26,12 @@ export default function Modal() {
         return obj;
       }, {});
 
-    setEvent(filtered);
+    setEvent({ event: filteredEvent, ...date });
+    console.log(event);
   };
 
   const submitHandler = () => {
     createEventObject();
-    console.log("created event", createdEvent);
   };
 
   const additionalFields = (selected) => {

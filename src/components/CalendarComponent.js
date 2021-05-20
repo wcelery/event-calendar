@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import { CalendarContext } from "../context/CalendarContext";
 
 export default function CalendarComponent() {
-  const { isOpen, setIsOpen } = React.useContext(CalendarContext);
+  const { isOpen, setIsOpen, dispatch } = React.useContext(CalendarContext);
 
   const highlightedDates = [
     new Date(2021, 4, 25, 0, 0, 0).toISOString(),
@@ -19,12 +19,14 @@ export default function CalendarComponent() {
       return "not_highlighted_dates";
     }
   };
-
   return (
     <>
       <Calendar
         tileClassName={(props) => getClassName(props.date)}
-        onClickDay={(date) => setIsOpen(!isOpen)}
+        onClickDay={(date) => {
+          dispatch({ type: "push_date_to_context", payload: date });
+          setIsOpen(!isOpen);
+        }}
       />
       {isOpen && <Modal />}
     </>
