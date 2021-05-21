@@ -25,5 +25,15 @@ export default function useLocalStorage(key, initialValue) {
       console.log(error);
     }
   };
-  return [storedValue, setValue];
+
+  const returnLocalStorage = () => {
+    return Object.assign(
+      {},
+      ...Object.entries(localStorage).map(([id, value]) => ({
+        [id]: JSON.parse(value),
+      }))
+    );
+  };
+
+  return [storedValue, returnLocalStorage, setValue];
 }
