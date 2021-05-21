@@ -3,8 +3,8 @@ import { CalendarContext } from "../../context/CalendarContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import DumbModal from "./DumbModal";
 
-export default function SmartModal({ children }) {
-  const { date } = React.useContext(CalendarContext);
+export default function SmartModal() {
+  const { date, isOpen } = React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState("None");
   const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
   const [persistedEvent, returnLocalStorage, setPersistedEvent] =
@@ -123,5 +123,5 @@ export default function SmartModal({ children }) {
     submitHandler,
   };
 
-  return <DumbModal {...sourceOfTruth} />;
+  return <>{isOpen && <DumbModal {...sourceOfTruth} />}</>;
 }
