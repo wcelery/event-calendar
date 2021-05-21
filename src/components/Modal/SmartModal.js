@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import { CalendarContext } from "../context/CalendarContext";
-import useLocalStorage from "../hooks/useLocalStorage";
+import React from "react";
+import { CalendarContext } from "../../context/CalendarContext";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import DumbModal from "./DumbModal";
 
-export default function Modal() {
-  const { isOpen, setIsOpen, date } = React.useContext(CalendarContext);
+export default function SmartModal({ children }) {
+  const { date } = React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState("None");
   const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
-  const [persistedEvent, setPersistedEvent] = useLocalStorage(
-    `event-${buildingEvent.name}`,
-    []
-  );
+  const [persistedEvent, returnLocalStorage, setPersistedEvent] =
+    useLocalStorage(`event-${buildingEvent.name}`, []);
 
   const optionValues = {
     None: { name: "None", fields: ["name"] },
@@ -114,39 +113,15 @@ export default function Modal() {
     }
   };
 
-  return (
-    <div>
-      <h1>test</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="text"
-          name="what"
-          onChange={(e) =>
-            setBuildingEvent({ ...buildingEvent, name: e.target.value })
-          }
-        />
-        <select
-          value={selected}
-          onChange={(e) => {
-            setSelected(e.target.value);
-          }}
-        >
-          {Object.values(optionValues).map((obj, idx) => (
-            <option key={idx} value={obj.name}>
-              {obj.name}
-            </option>
-          ))}
-        </select>
-        {additionalFields(selected)}
-        <button
-          type="submit"
-          onClick={() => {
-            submitHandler();
-          }}
-        >
-          Create
-        </button>
-      </form>
-    </div>
-  );
+  const sourceOfTruth = {
+    buildingEvent,
+    setBuildingEvent,
+    selected,
+    setSelected,
+    optionValues,
+    additionalFields,
+    submitHandler,
+  };
+
+  return <DumbModal {...sourceOfTruth} />;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import Modal from "./Modal";
+import SmartModal from "./Modal/SmartModal";
 import { CalendarContext } from "../context/CalendarContext";
 
 export default function CalendarComponent() {
@@ -28,7 +28,7 @@ export default function CalendarComponent() {
           setIsOpen(!isOpen);
         }}
       />
-      {isOpen && <Modal />}
+      {isOpen && <SmartModal />}
     </>
   );
 }
