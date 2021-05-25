@@ -1,7 +1,6 @@
 import React from "react";
 import { CalendarContext } from "../../context/CalendarContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import EventsList from "../EventsList";
 import DumbModal from "./DumbModal";
 
 export default function SmartModal() {

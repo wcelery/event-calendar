@@ -23,7 +23,10 @@ export default function CalendarComponent() {
       <Calendar
         tileClassName={(props) => getClassName(props.date)}
         onClickDay={(date) => {
-          dispatch({ type: "push_date_to_context", payload: date });
+          dispatch({
+            type: "push_date_to_context",
+            payload: date.toISOString(),
+          });
           setIsOpen(!isOpen);
         }}
       />
