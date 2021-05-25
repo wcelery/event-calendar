@@ -1,5 +1,6 @@
 import React from "react";
 import { CalendarContext } from "../context/CalendarContext";
+import Event from "./Event";
 
 export default function EventsList() {
   const { isOpen, setIsOpen, events, date } = React.useContext(CalendarContext);
@@ -10,11 +11,9 @@ export default function EventsList() {
 
   return (
     <section className="events-list">
-      <h1>tse</h1>
-      {Object.values(selectedDateEvents).map((val1) => (
-        <>
-          <h1>{val1.name}</h1>
-        </>
+      <h1>Events List</h1>
+      {Object.values(selectedDateEvents).map((event) => (
+        <Event {...event} />
       ))}
       <button onClick={() => setIsOpen(!isOpen)}>Create event</button>
     </section>
