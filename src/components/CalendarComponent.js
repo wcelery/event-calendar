@@ -1,7 +1,6 @@
 import React from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import SmartModal from "./Modal/SmartModal";
 import { CalendarContext } from "../context/CalendarContext";
 
 export default function CalendarComponent() {

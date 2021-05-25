@@ -1,20 +1,13 @@
 import React from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { CalendarContext } from "../context/CalendarContext";
 
 export default function EventsList() {
-  const [persistedEvent, returnLocalStorage, setPersistedEvent] =
-    useLocalStorage();
+  const { events } = React.useContext(CalendarContext);
 
-  React.useEffect(() => {
-    returnLocalStorage();
-  }, [persistedEvent]);
-
-  const eventsList = returnLocalStorage();
-  console.log(Object.values(eventsList));
   return (
     <section className="events-list">
       <h1>tse</h1>
-      {Object.values(eventsList).map((val1) => (
+      {Object.values(events).map((val1) => (
         <>
           <h1>{val1.name}</h1>
           <h1>{val1.Budget}</h1>
