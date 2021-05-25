@@ -7,8 +7,10 @@ export default function SmartModal() {
   const { date, isOpen, dispatch } = React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState("None");
   const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
-  const [persistedEvent, returnLocalStorage, setPersistedEvent] =
-    useLocalStorage(`event-${buildingEvent.name}`, []);
+  const [persistedEvent, setPersistedEvent] = useLocalStorage(
+    `event-${buildingEvent.name}`,
+    []
+  );
 
   const optionValues = {
     None: { name: "None", fields: ["name"] },
