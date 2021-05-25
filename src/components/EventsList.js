@@ -2,7 +2,7 @@ import React from "react";
 import { CalendarContext } from "../context/CalendarContext";
 
 export default function EventsList() {
-  const { events, date } = React.useContext(CalendarContext);
+  const { isOpen, setIsOpen, events, date } = React.useContext(CalendarContext);
 
   const selectedDateEvents = Object.values(events).filter(
     (value) => value.date === date
@@ -16,6 +16,7 @@ export default function EventsList() {
           <h1>{val1.name}</h1>
         </>
       ))}
+      <button onClick={() => setIsOpen(!isOpen)}>Create event</button>
     </section>
   );
 }
