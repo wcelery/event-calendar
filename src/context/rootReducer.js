@@ -24,6 +24,17 @@ export default function rootReducer(state = initialState, action) {
           [`event-${action.payload.name}`]: action.payload,
         },
       };
+    case "remove_event_from_context":
+      console.log("removed");
+      return {
+        ...state,
+        events: Object.keys(state.events)
+          .filter((item) => item !== `entry-${action.payload}`)
+          .reduce(
+            (prev, curr) => ({ ...prev, [curr]: state.events[curr] }),
+            {}
+          ),
+      };
     default:
       return state;
   }
