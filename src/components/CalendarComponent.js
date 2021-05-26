@@ -16,7 +16,7 @@ export default function CalendarComponent() {
     }
   };
   return (
-    <>
+    <div className="calendar">
       <Calendar
         tileClassName={(props) => getClassName(props.date)}
         onClickDay={(date) => {
@@ -27,6 +27,6 @@ export default function CalendarComponent() {
           setIsOpen(false);
         }}
       />
-    </>
+    </div>
   );
 }
