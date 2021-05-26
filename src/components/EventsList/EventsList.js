@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-import { CalendarContext } from "../context/CalendarContext";
-import Event from "./Event";
+import { CalendarContext } from "../../context/CalendarContext";
+import Event from "../Event/Event";
 
 export default function EventsList() {
   const { isOpen, setIsOpen, events, date } = React.useContext(CalendarContext);

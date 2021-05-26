@@ -1,7 +1,7 @@
 import React from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { CalendarContext } from "../context/CalendarContext";
+import { CalendarContext } from "../../context/CalendarContext";
 
 export default function CalendarComponent() {
   const { setIsOpen, events, dispatch } = React.useContext(CalendarContext);

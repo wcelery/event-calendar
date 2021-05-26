@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarContext } from "../context/CalendarContext";
+import { CalendarContext } from "../../context/CalendarContext";
 
 export default function Event(event) {
   const { dispatch } = React.useContext(CalendarContext);

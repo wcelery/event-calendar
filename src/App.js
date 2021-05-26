@@ -2,9 +2,9 @@ import "./App.css";
 import React from "react";
 import "react-calendar/dist/Calendar.css";
 import CalendarProvider from "./context/CalendarContext";
-import CalendarComponent from "./components/CalendarComponent";
+import CalendarComponent from "./components/Calendar/CalendarComponent";
 import SmartModal from "./components/Modal/SmartModal";
-import EventsList from "./components/EventsList";
+import EventsList from "./components/EventsList/EventsList";
 
 function App() {
   return (
