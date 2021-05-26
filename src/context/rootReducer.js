@@ -25,13 +25,12 @@ export default function rootReducer(state = initialState, action) {
         },
       };
     case "remove_event_from_context":
-      console.log("removed");
       return {
         ...state,
         events: Object.keys(state.events)
-          .filter((item) => item !== `entry-${action.payload}`)
+          .filter((item) => item !== `event-${action.payload}`) //remove whole entry by key
           .reduce(
-            (prev, curr) => ({ ...prev, [curr]: state.events[curr] }),
+            (prev, curr) => ({ ...prev, [curr]: state.events[curr] }), //reassembly whole object from array
             {}
           ),
       };
