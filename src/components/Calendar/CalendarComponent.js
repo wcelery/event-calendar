@@ -12,9 +12,8 @@ export default function CalendarComponent() {
   const getClassName = (date) => {
     if (extractedDatesFrom.includes(date.toISOString())) {
       return "highlighted_dates";
-    } else {
-      return "not_highlighted_dates";
     }
+    return "not_highlighted_dates";
   };
   return (
     <div className="calendar">
