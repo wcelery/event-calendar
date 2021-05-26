@@ -9,7 +9,3 @@ body {
   justify-content: space-evenly;
   margin: 1em;
 }
-
-.highlighted_dates {
-  background-color: red !important;
-}

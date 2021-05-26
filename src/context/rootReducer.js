@@ -25,6 +25,7 @@ export default function rootReducer(state = initialState, action) {
         },
       };
     case "remove_event_from_context":
+      localStorage.removeItem(`event-${action.payload}`);
       return {
         ...state,
         events: Object.keys(state.events)
