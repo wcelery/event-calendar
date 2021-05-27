@@ -24,7 +24,6 @@ export default function CalendarComponent() {
             type: "push_date_to_context",
             payload: date.toISOString(),
           });
-          setIsOpen(false);
         }}
       />
     </div>

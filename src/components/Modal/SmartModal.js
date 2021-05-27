@@ -1,10 +1,12 @@
 import React from "react";
+import Modal from "react-modal";
 import { CalendarContext } from "../../context/CalendarContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import DumbModal from "./DumbModal";
 
 export default function SmartModal() {
-  const { date, isOpen, dispatch } = React.useContext(CalendarContext);
+  const { date, isOpen, setIsOpen, dispatch } =
+    React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState("None");
   const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
   const [persistedEvent, setPersistedEvent] = useLocalStorage(
@@ -18,6 +20,8 @@ export default function SmartModal() {
     Events: { name: "Events", fields: ["Where", "When"] },
     Other: { name: "Other", fields: ["Notes"] },
   };
+
+  Modal.setAppElement("#root");
 
   const createEventObject = () => {
     const filteredEvent = Object.keys(buildingEvent)
@@ -35,6 +39,7 @@ export default function SmartModal() {
 
   const submitHandler = () => {
     createEventObject();
+    setIsOpen(false);
   };
 
   const additionalFields = (selected) => {
@@ -126,5 +131,17 @@ export default function SmartModal() {
     submitHandler,
   };
 
-  return <>{isOpen && <DumbModal {...sourceOfTruth} />}</>;
+  return (
+    <>
+      {
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={() => setIsOpen(false)}
+          contentLabel="Example Modal"
+        >
+          <DumbModal {...sourceOfTruth} />
+        </Modal>
+      }
+    </>
+  );
 }

@@ -4,7 +4,7 @@ import { CalendarContext } from "../../context/CalendarContext";
 import Event from "../Event/Event";
 
 export default function EventsList() {
-  const { isOpen, setIsOpen, events, date } = React.useContext(CalendarContext);
+  const { setIsOpen, events, date } = React.useContext(CalendarContext);
 
   const selectedDateEvents = Object.values(events).filter(
     (value) => value.date === date
@@ -13,7 +13,7 @@ export default function EventsList() {
   return (
     <section className="events-list">
       <h1>Events List</h1>
-      <button onClick={() => setIsOpen(!isOpen)}>+</button>
+      <button onClick={() => setIsOpen(true)}>+</button>
       {Object.values(selectedDateEvents).map((event) => (
         <Event key={uuidv4()} {...event} />
       ))}
