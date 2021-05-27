@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import "./Modal.css";
 import { CalendarContext } from "../../context/CalendarContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import DumbModal from "./DumbModal";
@@ -17,7 +18,7 @@ export default function SmartModal() {
   const optionValues = {
     None: { name: "None", fields: ["name"] },
     Holidays: { name: "Holidays", fields: ["Budget"] },
-    Events: { name: "Events", fields: ["Where", "When"] },
+    Event: { name: "Event", fields: ["Where", "When"] },
     Other: { name: "Other", fields: ["Notes"] },
   };
 
@@ -51,8 +52,10 @@ export default function SmartModal() {
         return (
           <>
             {optionValues[selected].fields.map((field, idx) => (
-              <>
-                <label htmlFor={field}>{field}</label>
+              <div className="input-field">
+                <label htmlFor={field}>
+                  <b>{field}</b>
+                </label>
                 <input
                   key={idx}
                   type="text"
@@ -65,17 +68,19 @@ export default function SmartModal() {
                     })
                   }
                 ></input>
-              </>
+              </div>
             ))}
           </>
         );
 
-      case "Events":
+      case "Event":
         return (
           <>
             {optionValues[selected].fields.map((field, idx) => (
-              <>
-                <label htmlFor={field}>{field}</label>
+              <div className="input-field">
+                <label htmlFor={field}>
+                  <b>{field}</b>
+                </label>
                 <input
                   key={idx}
                   type="text"
@@ -88,7 +93,7 @@ export default function SmartModal() {
                     })
                   }
                 ></input>
-              </>
+              </div>
             ))}
           </>
         );
@@ -97,8 +102,10 @@ export default function SmartModal() {
         return (
           <>
             {optionValues[selected].fields.map((field, idx) => (
-              <>
-                <label htmlFor={field}>{field}</label>
+              <div className="input-field">
+                <label htmlFor={field}>
+                  <b>{field}</b>
+                </label>
                 <input
                   key={idx}
                   type="text"
@@ -111,7 +118,7 @@ export default function SmartModal() {
                     })
                   }
                 ></input>
-              </>
+              </div>
             ))}
           </>
         );
@@ -137,7 +144,9 @@ export default function SmartModal() {
         <Modal
           isOpen={isOpen}
           onRequestClose={() => setIsOpen(false)}
-          contentLabel="Example Modal"
+          contentLabel="Create event"
+          className="modal"
+          overlayClassName="modal-overlay"
         >
           <DumbModal {...sourceOfTruth} />
         </Modal>
