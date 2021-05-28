@@ -5,7 +5,7 @@ import { CalendarContext } from "../../context/CalendarContext";
 import "./OverrideDefault.css";
 
 export default function CalendarComponent() {
-  const { setIsOpen, events, dispatch } = React.useContext(CalendarContext);
+  const { events, dispatch } = React.useContext(CalendarContext);
 
   const extractedDatesFrom = Object.values(events).map((value) => value.date);
 

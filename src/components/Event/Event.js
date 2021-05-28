@@ -5,7 +5,16 @@ export default function Event(event) {
   const { dispatch } = React.useContext(CalendarContext);
   return (
     <div className="event">
-      <h2>{event.name}</h2>
+      <span className="heading">
+        <h4>{event.name}</h4>
+        <button
+          onClick={() =>
+            dispatch({ type: "remove_event_from_context", payload: event.name })
+          }
+        >
+          -
+        </button>
+      </span>
       {Object.entries(event).map((entry) => (
         <>
           {entry[0] !== "name" && entry[0] !== "date" && (
@@ -13,13 +22,6 @@ export default function Event(event) {
           )}
         </>
       ))}
-      <button
-        onClick={() =>
-          dispatch({ type: "remove_event_from_context", payload: event.name })
-        }
-      >
-        Remove
-      </button>
     </div>
   );
 }

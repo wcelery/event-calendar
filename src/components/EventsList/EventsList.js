@@ -1,5 +1,6 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import "./Events.css";
 import { CalendarContext } from "../../context/CalendarContext";
 import Event from "../Event/Event";
 
@@ -12,8 +13,11 @@ export default function EventsList() {
 
   return (
     <section className="events-list">
-      <h1>Events List</h1>
-      <button onClick={() => setIsOpen(true)}>+</button>
+      <span className="heading">
+        <h1>Events List</h1>
+        <button onClick={() => setIsOpen(true)}>+</button>
+      </span>
+
       {Object.values(selectedDateEvents).map((event) => (
         <Event key={uuidv4()} {...event} />
       ))}
