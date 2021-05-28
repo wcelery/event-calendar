@@ -7,10 +7,13 @@ export default function DumbModal({
   setSelected,
   optionValues,
   additionalFields,
-  submitHandler,
+  handleSubmit, //from react-hook-form
+  onSubmit,
+  register,
+  errors,
 }) {
   return (
-    <form className="modal-content" onSubmit={(e) => e.preventDefault()}>
+    <form className="modal-content" onSubmit={handleSubmit(onSubmit)}>
       <h1>Create event</h1>
       <div className="input-field">
         <label htmlFor="name">
@@ -20,10 +23,12 @@ export default function DumbModal({
           type="text"
           name="what"
           id="name"
-          onChange={(e) =>
-            setBuildingEvent({ ...buildingEvent, name: e.target.value })
-          }
+          ref={register({ required: true, minLength: 3, maxLength: 30 })}
+          onChange={(e) => {
+            setBuildingEvent({ ...buildingEvent, name: e.target.value });
+          }}
         />
+        {errors.what && <span>Event name must be between 3 and 30 chars</span>}
       </div>
       <div className="input-field">
         <label htmlFor="select">
@@ -45,13 +50,7 @@ export default function DumbModal({
       </div>
 
       {additionalFields(selected)}
-      <button
-        type="submit"
-        className="create-button"
-        onClick={() => {
-          submitHandler();
-        }}
-      >
+      <button type="submit" className="create-button">
         Create
       </button>
     </form>

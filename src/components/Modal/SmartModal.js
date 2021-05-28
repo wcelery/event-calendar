@@ -4,6 +4,7 @@ import "./Modal.css";
 import { CalendarContext } from "../../context/CalendarContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import DumbModal from "./DumbModal";
+import { useForm } from "react-hook-form";
 
 export default function SmartModal() {
   const { date, isOpen, setIsOpen, dispatch } =
@@ -14,6 +15,7 @@ export default function SmartModal() {
     `event-${buildingEvent.name}`,
     []
   );
+  const { register, handleSubmit, errors } = useForm();
 
   const optionValues = {
     None: { name: "None", fields: ["name"] },
@@ -38,7 +40,7 @@ export default function SmartModal() {
     dispatch({ type: "push_event_to_context", payload: event });
   };
 
-  const submitHandler = () => {
+  const onSubmit = () => {
     createEventObject();
     setIsOpen(false);
   };
@@ -59,8 +61,9 @@ export default function SmartModal() {
                 <input
                   key={idx}
                   type="text"
-                  name={field}
+                  name="holidays"
                   id={field}
+                  ref={register({ required: true, maxLength: 40 })}
                   onChange={(e) =>
                     setBuildingEvent({
                       ...buildingEvent,
@@ -68,6 +71,9 @@ export default function SmartModal() {
                     })
                   }
                 ></input>
+                {errors.holidays && (
+                  <span>This field must be below 40 chars</span>
+                )}
               </div>
             ))}
           </>
@@ -84,8 +90,9 @@ export default function SmartModal() {
                 <input
                   key={idx}
                   type="text"
-                  name={field}
+                  name="details"
                   id={field}
+                  ref={register({ required: true, maxLength: 40 })}
                   onChange={(e) =>
                     setBuildingEvent({
                       ...buildingEvent,
@@ -93,6 +100,9 @@ export default function SmartModal() {
                     })
                   }
                 ></input>
+                {errors.details && (
+                  <span>This field must be below 40 chars</span>
+                )}
               </div>
             ))}
           </>
@@ -109,8 +119,12 @@ export default function SmartModal() {
                 <input
                   key={idx}
                   type="text"
-                  name={field}
+                  name="other"
                   id={field}
+                  ref={register({
+                    required: true,
+                    maxLength: 100,
+                  })}
                   onChange={(e) =>
                     setBuildingEvent({
                       ...buildingEvent,
@@ -118,6 +132,9 @@ export default function SmartModal() {
                     })
                   }
                 ></input>
+                {errors.other && (
+                  <span>This field must be below 100 chars</span>
+                )}
               </div>
             ))}
           </>
@@ -135,7 +152,10 @@ export default function SmartModal() {
     setSelected,
     optionValues,
     additionalFields,
-    submitHandler,
+    handleSubmit,
+    onSubmit,
+    errors,
+    register,
   };
 
   return (
