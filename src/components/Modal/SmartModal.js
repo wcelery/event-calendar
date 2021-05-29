@@ -62,8 +62,12 @@ export default function SmartModal() {
       case "Holidays":
         return (
           <>
-            {optionValues[selected].fields.map((field) => (
-              <FieldsFragment field={field} {...fieldsFragmentProps} />
+            {optionValues[selected].fields.map((field, idx) => (
+              <FieldsFragment
+                key={idx + field}
+                field={field}
+                {...fieldsFragmentProps}
+              />
             ))}
           </>
         );
@@ -71,8 +75,12 @@ export default function SmartModal() {
       case "Event":
         return (
           <>
-            {optionValues[selected].fields.map((field) => (
-              <FieldsFragment field={field} {...fieldsFragmentProps} />
+            {optionValues[selected].fields.map((field, idx) => (
+              <FieldsFragment
+                key={idx + field}
+                field={field}
+                {...fieldsFragmentProps}
+              />
             ))}
           </>
         );
@@ -80,8 +88,12 @@ export default function SmartModal() {
       case "Other":
         return (
           <>
-            {optionValues[selected].fields.map((field) => (
-              <FieldsFragment field={field} {...fieldsFragmentProps} />
+            {optionValues[selected].fields.map((field, idx) => (
+              <FieldsFragment
+                key={idx + field}
+                field={field}
+                {...fieldsFragmentProps}
+              />
             ))}
           </>
         );
