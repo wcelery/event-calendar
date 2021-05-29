@@ -17,7 +17,7 @@ export default function Event(event) {
       </span>
       {Object.entries(event).map((entry) => (
         <>
-          {entry[0] !== "name" && entry[0] !== "date" && (
+          {entry[0] !== "name" && entry[0] !== "date" && entry[0] !== "id" && (
             <p>{`${entry[0]}: ${entry[1]}`}</p>
           )}
         </>

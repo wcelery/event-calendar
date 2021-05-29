@@ -19,7 +19,7 @@ export default function EventsList() {
       </span>
 
       {Object.values(selectedDateEvents).map((event) => (
-        <Event key={uuidv4()} {...event} />
+        <Event key={event.id} {...event} />
       ))}
     </section>
   );

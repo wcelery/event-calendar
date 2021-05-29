@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
 import "./Modal.css";
 import { CalendarContext } from "../../context/CalendarContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
@@ -36,7 +37,7 @@ export default function SmartModal() {
         obj[key] = buildingEvent[key];
         return obj;
       }, {});
-    const event = { ...filteredEvent, date };
+    const event = { ...filteredEvent, date, id: uuidv4() };
     setPersistedEvent(event);
     dispatch({ type: "push_event_to_context", payload: event });
   };
