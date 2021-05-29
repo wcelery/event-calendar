@@ -1,10 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
+import { useForm } from "react-hook-form";
 import "./Modal.css";
 import { CalendarContext } from "../../context/CalendarContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import DumbModal from "./DumbModal";
-import { useForm } from "react-hook-form";
+import FieldsFragment from "./FieldsFragment";
 
 export default function SmartModal() {
   const { date, isOpen, setIsOpen, dispatch } =
@@ -45,6 +46,13 @@ export default function SmartModal() {
     setIsOpen(false);
   };
 
+  const fieldsFragmentProps = {
+    register,
+    errors,
+    buildingEvent,
+    setBuildingEvent,
+  };
+
   const additionalFields = (selected) => {
     switch (selected) {
       case "None":
@@ -53,28 +61,8 @@ export default function SmartModal() {
       case "Holidays":
         return (
           <>
-            {optionValues[selected].fields.map((field, idx) => (
-              <div className="input-field">
-                <label htmlFor={field}>
-                  <b>{field}</b>
-                </label>
-                <input
-                  key={idx}
-                  type="text"
-                  name="holidays"
-                  id={field}
-                  ref={register({ required: true, maxLength: 40 })}
-                  onChange={(e) =>
-                    setBuildingEvent({
-                      ...buildingEvent,
-                      [field]: e.target.value,
-                    })
-                  }
-                ></input>
-                {errors.holidays && (
-                  <span>This field must be below 40 chars</span>
-                )}
-              </div>
+            {optionValues[selected].fields.map((field) => (
+              <FieldsFragment field={field} {...fieldsFragmentProps} />
             ))}
           </>
         );
@@ -82,28 +70,8 @@ export default function SmartModal() {
       case "Event":
         return (
           <>
-            {optionValues[selected].fields.map((field, idx) => (
-              <div className="input-field">
-                <label htmlFor={field}>
-                  <b>{field}</b>
-                </label>
-                <input
-                  key={idx}
-                  type="text"
-                  name="details"
-                  id={field}
-                  ref={register({ required: true, maxLength: 40 })}
-                  onChange={(e) =>
-                    setBuildingEvent({
-                      ...buildingEvent,
-                      [field]: e.target.value,
-                    })
-                  }
-                ></input>
-                {errors.details && (
-                  <span>This field must be below 40 chars</span>
-                )}
-              </div>
+            {optionValues[selected].fields.map((field) => (
+              <FieldsFragment field={field} {...fieldsFragmentProps} />
             ))}
           </>
         );
@@ -111,31 +79,8 @@ export default function SmartModal() {
       case "Other":
         return (
           <>
-            {optionValues[selected].fields.map((field, idx) => (
-              <div className="input-field">
-                <label htmlFor={field}>
-                  <b>{field}</b>
-                </label>
-                <input
-                  key={idx}
-                  type="text"
-                  name="other"
-                  id={field}
-                  ref={register({
-                    required: true,
-                    maxLength: 100,
-                  })}
-                  onChange={(e) =>
-                    setBuildingEvent({
-                      ...buildingEvent,
-                      [field]: e.target.value,
-                    })
-                  }
-                ></input>
-                {errors.other && (
-                  <span>This field must be below 100 chars</span>
-                )}
-              </div>
+            {optionValues[selected].fields.map((field) => (
+              <FieldsFragment field={field} {...fieldsFragmentProps} />
             ))}
           </>
         );

@@ -70,6 +70,15 @@
   border: 2px solid #000;
 }
 
+.invalid_field {
+  box-sizing: border-box !important;
+  border: 2px solid rgba(255, 34, 34, 0.664) !important;
+}
+
+.invalid_field:focus {
+  border: 3px solid rgba(255, 34, 34, 0.664) !important;
+}
+
 .create-button {
   font-weight: 700;
   padding: 12px 12px;

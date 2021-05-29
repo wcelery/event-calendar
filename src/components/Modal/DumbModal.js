@@ -24,6 +24,7 @@ export default function DumbModal({
           name="what"
           id="name"
           ref={register({ required: true, minLength: 3, maxLength: 30 })}
+          className={errors.what && "invalid_field"}
           onChange={(e) => {
             setBuildingEvent({ ...buildingEvent, name: e.target.value });
           }}
