@@ -1,3 +1,5 @@
+@use '../../scss/_mixins';
+
 .react-calendar {
   box-shadow: 0 7.4px 5px -10px rgba(0, 0, 0, 0.038),
     0 30px 40px -10px rgba(0, 0, 0, 0.07);
@@ -7,12 +9,16 @@
     box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.038),
       0 2px 4px rgba(0, 0, 0, 0.07) !important;
     &--now {
-      background-color: #2dff0e57 !important;
-      color: green !important;
+      @include _mixins.greenAccent;
     }
     &--active {
+      /*how to combine???????????*/
       background: #006edc57 !important;
       color: #006edcbd !important;
+      &:focus {
+        background: #006edc57 !important;
+        color: #006edcbd !important;
+      }
     }
   }
 }
@@ -22,14 +28,5 @@ abbr[title] {
 }
 
 .highlighted_dates {
-  background-color: #ff868657 !important;
-  color: red !important;
-}
-
-.react-calendar__tile--rangeBothEnds,
-.react-calendar__tile--active:enabled:focus,
-.react-calendar__tile--active:enabled:hover {
-  /*don' wanna repeat this 3 times with that &something{} syntax*/
-  background-color: #e6e6e6 !important;
-  color: black !important;
+  @include _mixins.redAccent;
 }

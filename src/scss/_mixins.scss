@@ -1,4 +1,9 @@
 @mixin redAccent {
-  background-color: #ff868657;
-  color: #ff0000bd;
+  background-color: #ff868657 !important;
+  color: #ff0000bd !important;
+}
+
+@mixin greenAccent {
+  background-color: #2dff0e57 !important;
+  color: green !important;
 }

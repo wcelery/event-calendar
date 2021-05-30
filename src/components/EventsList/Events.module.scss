@@ -1,8 +1,18 @@
+@use '../../scss/_mixins';
+
 .events-list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   min-width: 40%;
+
+  > .heading > button {
+    @include _mixins.greenAccent;
+  }
+}
+
+.plus-button {
+  @include _mixins.greenAccent;
 }
 
 .heading {
@@ -18,8 +28,7 @@
   > button {
     cursor: pointer;
     margin-left: 1em;
-    background-color: #ff868657;
-    color: #ff0000bd;
+    @include _mixins.redAccent;
     border: none;
     border-radius: 50%;
     min-width: 2em;
