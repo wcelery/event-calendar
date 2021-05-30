@@ -23,6 +23,11 @@
   }
 }
 
+.calendar {
+  position: sticky;
+  top: 16px;
+}
+
 abbr[title] {
   text-decoration: none;
 }

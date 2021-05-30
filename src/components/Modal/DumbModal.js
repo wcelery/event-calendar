@@ -23,13 +23,16 @@ export default function DumbModal({
           type="text"
           name="what"
           id="name"
-          ref={register({ required: true, minLength: 3, maxLength: 30 })}
+          ref={register({
+            required: { value: true, message: "This field is required" },
+            maxLength: { value: 30, message: "Only 30 chars is allowed" },
+          })}
           className={errors.what && "invalid_field"}
           onChange={(e) => {
             setBuildingEvent({ ...buildingEvent, name: e.target.value });
           }}
         />
-        {errors.what && <span>Event name must be between 3 and 30 chars</span>}
+        {errors.what && <span>{errors.what.message}</span>}
       </div>
       <div className="input-field">
         <label htmlFor="select">

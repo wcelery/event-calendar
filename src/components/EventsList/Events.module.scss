@@ -11,10 +11,6 @@
   }
 }
 
-.plus-button {
-  @include _mixins.greenAccent;
-}
-
 .heading {
   display: inline-flex;
   align-items: center;

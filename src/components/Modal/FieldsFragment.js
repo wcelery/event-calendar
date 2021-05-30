@@ -16,8 +16,8 @@ export default function FieldsFragment({
         name={field}
         id={field}
         ref={register({
-          required: true,
-          maxLength: 100,
+          required: { value: true, message: "This field is required" },
+          maxLength: { value: 100, message: "Only 100 chars is allowed" },
         })}
         className={errors[field] && "invalid_field"}
         onChange={(e) =>
@@ -27,9 +27,7 @@ export default function FieldsFragment({
           })
         }
       ></input>
-      {errors[field] && (
-        <span>This field is required and must be below 100 chars</span>
-      )}
+      {errors[field] && <span>{errors[field].message}</span>}
     </div>
   );
 }
