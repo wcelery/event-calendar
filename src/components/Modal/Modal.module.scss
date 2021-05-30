@@ -37,46 +37,46 @@
   margin-bottom: 0.5em;
   display: flex;
   flex-direction: column;
-}
 
-.input-field > label {
-  margin-bottom: 0.5em;
-}
+  > label {
+    margin-bottom: 0.5em;
+  }
 
-.input-field > input[type="text"] {
-  box-sizing: border-box;
-  padding: 12px 20px;
-  border: 2px solid rgb(199, 199, 199);
-  border-radius: 4px;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  outline: none;
-}
+  > input[type="text"] {
+    box-sizing: border-box;
+    padding: 12px 20px;
+    border: 2px solid rgb(199, 199, 199);
+    border-radius: 4px;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    outline: none;
 
-.input-field > input[type="text"]:focus {
-  border: 2px solid #000;
-}
+    &:focus {
+      border: 2px solid #000;
+    }
+  }
 
-.input-field > select {
-  box-sizing: border-box;
-  border: 2px solid rgb(199, 199, 199);
-  border-radius: 4px;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  padding: 12px 20px;
-}
+  > select {
+    box-sizing: border-box;
+    border: 2px solid rgb(199, 199, 199);
+    border-radius: 4px;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    padding: 12px 20px;
 
-.input-field > select:focus {
-  border: 2px solid #000;
+    &:focus {
+      border: 2px solid #000;
+    }
+  }
 }
 
 .invalid_field {
   box-sizing: border-box !important;
   border: 2px solid rgba(255, 34, 34, 0.664) !important;
-}
 
-.invalid_field:focus {
-  border: 3px solid rgba(255, 34, 34, 0.664) !important;
+  &:focus {
+    border: 3px solid rgba(255, 34, 34, 0.664) !important;
+  }
 }
 
 .create-button {
@@ -89,16 +89,16 @@
   border-radius: 4px;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
 
-.create-button:hover {
-  cursor: pointer;
-  transform: translateY(-2px);
-  -webkit-box-shadow: 0px 3px 4px 0px rgba(34, 60, 80, 0.2);
-  -moz-box-shadow: 0px 3px 4px 0px rgba(34, 60, 80, 0.2);
-  box-shadow: 0px 3px 4px 0px rgba(34, 60, 80, 0.2);
-}
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    -webkit-box-shadow: 0px 3px 4px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 3px 4px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 3px 4px 0px rgba(34, 60, 80, 0.2);
+  }
 
-.create-button:focus {
-  border: 1px solid red;
+  &:focus {
+    border: 1px solid red;
+  }
 }
