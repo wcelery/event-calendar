@@ -1,6 +1,5 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
-import "./Events.css";
+import "./Events.module.scss";
 import { CalendarContext } from "../../context/CalendarContext";
 import Event from "../Event/Event";
 

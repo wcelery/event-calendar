@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
-import "./Modal.css";
+import "./Modal.module.scss";
 import { CalendarContext } from "../../context/CalendarContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import DumbModal from "./DumbModal";

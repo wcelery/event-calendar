@@ -2,7 +2,7 @@ import React from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { CalendarContext } from "../../context/CalendarContext";
-import "./OverrideDefault.css";
+import "./OverrideDefault.module.scss";
 
 export default function CalendarComponent() {
   const { events, dispatch } = React.useContext(CalendarContext);
