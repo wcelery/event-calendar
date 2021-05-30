@@ -1,3 +1,5 @@
+@use '../../scss/_mixins.scss';
+
 .modal {
   position: absolute;
   display: flex;
@@ -83,8 +85,7 @@
   font-weight: 700;
   padding: 12px 12px;
   margin: 8px 0;
-  background-color: #ff868657;
-  color: #ff0000bd;
+  @include _mixins.redAccent;
   border: none;
   border-radius: 4px;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),

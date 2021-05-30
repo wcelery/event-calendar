@@ -1,0 +1,11 @@
+@import "../components/EventsList/Events.module.scss";
+@import "../components/Modal/Modal.module.scss";
+@import "../components/Calendar/OverrideDefault.module.scss";
+
+.App {
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin: 1em;
+}
