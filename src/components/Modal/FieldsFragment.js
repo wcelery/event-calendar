@@ -27,7 +27,9 @@ export default function FieldsFragment({
           })
         }
       ></input>
-      {errors[field] && <span>{errors[field].message}</span>}
+      {errors[field] && (
+        <span className="error-message">{errors[field].message}</span>
+      )}
     </div>
   );
 }

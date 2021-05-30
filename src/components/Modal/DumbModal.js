@@ -32,7 +32,9 @@ export default function DumbModal({
             setBuildingEvent({ ...buildingEvent, name: e.target.value });
           }}
         />
-        {errors.what && <span>{errors.what.message}</span>}
+        {errors.what && (
+          <span className="error-message">{errors.what.message}</span>
+        )}
       </div>
       <div className="input-field">
         <label htmlFor="select">
