@@ -35,3 +35,10 @@ abbr[title] {
 .highlighted_dates {
   @include _mixins.redAccent;
 }
+
+@media screen and (max-width: 450px) {
+  .calendar {
+    position: unset;
+    margin-bottom: 2em;
+  }
+}

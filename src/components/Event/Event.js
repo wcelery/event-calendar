@@ -18,12 +18,13 @@ export default function Event(event) {
       </span>
       {Object.entries(event).map((entry) => (
         <div
-          key={
-            uuidv4() /** its safe to generate ids on the fly because entries remains unchanged */
-          }
+          key={uuidv4()} /** its safe to generate ids on the fly because entries remains unchanged */
         >
           {entry[0] !== "name" && entry[0] !== "date" && entry[0] !== "id" && (
-            <p>{`${entry[0]}: ${entry[1]}`}</p>
+            <div className="event-content">
+              <span>{entry[0]}: </span>
+              <span>{entry[1]}</span>
+            </div>
           )}
         </div>
       ))}

@@ -5,9 +5,18 @@
   flex-direction: column;
   align-items: flex-start;
   min-width: 40%;
+  margin-left: 5em;
 
-  > .heading > button {
-    @include _mixins.greenAccent;
+  > .heading {
+    > h1 {
+      font-size: 3em;
+      margin-top: 0;
+      margin-bottom: 0.2em;
+    }
+    > button {
+      @include _mixins.greenAccent;
+      transform: translateY(-0.2em);
+    }
   }
 }
 
@@ -19,6 +28,10 @@
     word-wrap: break-word;
     text-align: left;
     max-width: fit-content;
+    font-size: 2em;
+
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
   }
 
   > button {
@@ -50,9 +63,10 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  overflow-wrap: break-word;
   border: 1px solid #eee;
   width: 100%;
-  margin: 0.5em 1em 0.5em 0;
+  margin: 0.5em 0 0.5em 0;
   padding: 1em;
   border-radius: 4px;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
@@ -67,5 +81,36 @@
     box-shadow: 0 0.3px 0.4px rgba(0, 0, 0, 0.022),
       0 0.9px 1px rgba(0, 0, 0, 0.031), 0 1.8px 2.1px rgba(0, 0, 0, 0.039),
       0 3.7px 4.4px rgba(0, 0, 0, 0.048), 0 10px 12px rgba(0, 0, 0, 0.07);
+  }
+}
+
+.event-content {
+  text-align: left;
+
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.event-content span:first-child {
+  font-weight: 500;
+}
+
+.event-content span:last-child {
+  font-weight: 300;
+}
+
+@media screen and (max-width: 450px) {
+  .events-list {
+    margin: 0;
+    align-items: center;
+
+    h1 {
+      font-size: 2.3em !important;
+    }
+  }
+
+  .event {
+    max-width: 90%;
+    font-size: 0.8em;
   }
 }
