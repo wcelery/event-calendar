@@ -1,6 +1,6 @@
 # Event Calendar
 
-Small app that make use of localStorage to save events.
+Small app that makes use of localStorage to save events.
 Main goal is to learn SASS
 
 ## Made with
