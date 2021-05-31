@@ -13,6 +13,7 @@ export default function SmartModal() {
     React.useContext(CalendarContext);
   const [selected, setSelected] = React.useState("None");
   const [buildingEvent, setBuildingEvent] = React.useState({ name: "" });
+  // eslint-disable-next-line
   const [persistedEvent, setPersistedEvent] = useLocalStorage(
     `event-${buildingEvent.name}`,
     []
